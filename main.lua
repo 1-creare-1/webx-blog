@@ -1,10 +1,8 @@
-local test = true;
+local output = get("output")
+output.set_content("Start v1")
 
-local res = fetch({
-    url = "https://api.buss.lol/",
-    method = "GET",
-    headers = { ["Content-Type"] = "application/json" },
-    body = '{ "test": ' .. test .. '}'
-})
+function warn(str)
+    output.set_content(str)
+end
 
-get("output").set_content(res)
+xpcall(function() local _ = nil + 1 end, warn)
