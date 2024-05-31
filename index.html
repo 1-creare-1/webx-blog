@@ -11,7 +11,33 @@
 </head>
 
 <body>
-    <p>Welcome to _creare_'s Blog! This is a work in progress.</p>
+    <h2>Welcome to _creare_'s Blog!</h1>
+    <h3>This is a work in progress.<h3/>
+    <br/>
+    <div>
+        <h4>Post 1 or something I guess<h4/>
+        <p>If youve tried writing lua code for web x you know its a pain to debug windows.
+        I've come up with a solution that makes debugging far easier, heres what I've done!
+        First I created a warn and log function like so:<p/>
+        <code>
+        local outputLabel, errorLabel = get("log_out"), get("warn_out")
+        function log(msg)
+        	outputLabel.set_content(msg)
+        end
+        
+        function warn(msg)
+        	errorLabel.set_content(msg)
+        end
+        <code/>
+        <p>Make sure to create two p tags, one with the "log_out" class and the other with the "warn_out" class<p/>
+        <p>Next, wherever there is a coroutine entry point wrap it in an xpcall like so:<p/>
+        <code>
+            get("some_button").on_click(function(content)xpcall(function(content)
+                log("Button Clicked")
+            end,warn)end)
+        <code/>
+        <p>Now if, for some reason, the log("Button Clicked") caused an error the error would be outputted to the p with the error class<p/>
+    <div/>
     <p class="output">Output...</p>
 </body>
 
